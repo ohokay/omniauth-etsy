@@ -1,6 +1,6 @@
-# Omniauth::Etsy
+# OmniAuth Etsy
 
-A (very alpha) unofficial OmniAuth strategy for Etsy. You'll need to register an application on Etsy (https://www.etsy.com/developers/register) to get a token and secret.
+A (very alpha) unofficial [OmniAuth](https://github.com/intridea/omniauth) strategy for Etsy. You'll need to register an application on [Etsy](https://www.etsy.com/developers/register) to get a token and secret.
 
 ## Useage
 
@@ -8,7 +8,7 @@ A (very alpha) unofficial OmniAuth strategy for Etsy. You'll need to register an
   		provider :etsy, 'token', 'secret'
 	end
 
-Optionally, you may pass in comma separated "Permission Scopes" (http://www.etsy.com/developers/documentation/getting_started/oauth#section_permission_scopes)
+Optionally, you may pass in comma separated [Permission Scopes](http://www.etsy.com/developers/documentation/getting_started/oauth#section_permission_scopes):
 
 
 	Rails.application.config.middleware.use OmniAuth::Builder do
@@ -19,9 +19,10 @@ Optionally, you may pass in comma separated "Permission Scopes" (http://www.etsy
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'omniauth-etsy', '0.0.1-alpha'
+Add OmniAuth and OmniAuth::Etsy to your application's Gemfile:
+	
+	gem 'omniauth', '~>1.0'
+  	gem 'omniauth-etsy', '0.0.1-alpha'
 
 And then execute:
 
@@ -29,6 +30,7 @@ And then execute:
 
 Or install it yourself as:
 
+	$ gem install omniauth
     $ gem install omniauth-etsy
 
 ## Contributing
