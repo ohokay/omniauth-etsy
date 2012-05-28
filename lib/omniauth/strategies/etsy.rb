@@ -3,8 +3,9 @@ require 'omniauth-oauth'
 module OmniAuth
   module Strategies
     class Etsy < OmniAuth::Strategies::OAuth
+
       option :client_options, {
-        :site               => "http://sandbox.openapi.etsy.com/v2",
+        :site               => "http://openapi.etsy.com/v2",
         :request_token_path => "/oauth/request_token",
         :access_token_path  => "/oauth/access_token",
         :authorize_url      => "https://www.etsy.com/oauth/signin"
@@ -17,29 +18,32 @@ module OmniAuth
           'nickname' => raw_info['login_name'],
           'email' => raw_info['primary_email'],
           'user_id' => raw_info['user_id'],
-        }.merge!(profile_info)
+          'profile' => profile_info
+        }
       end
 
       def request_phase
         if options.scope
-          options.request_params.merge!(:scope => Rack::Utils.build_query([options.scope]))
+          options.request_params.merge!(:scope => options.scope.gsub(',', ' '))
         end
+        prep_sandbox
         super
       end
 
-      def profile_info
-        profile = user_hash['Profile']
-        if profile
-          {
-            'first_name' => profile['first_name'],
-            'last_name' => profile['last_name'],
-            'image' => profile['image_url_75x75'],
-            'full_name' => "#{profile['first_name']} #{profile['last_name']}",
-            'name' => "#{profile['first_name']} #{profile['last_name']}"
-          }
-        else
-          {}
+      def callback_phase
+        prep_sandbox
+        super
+      end
+
+      def prep_sandbox
+        if options.sandbox
+          options.client_options.merge!(:site => "http://sandbox.openapi.etsy.com/v2")
         end
+      end
+
+      def profile_info
+        @profile_info ||= user_hash['Profile']
+        @profile_info.each { |k,v| @profile_info[k] = '' if v == nil }
       end
 
       def raw_info
