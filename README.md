@@ -31,36 +31,37 @@ This is what you can expect in your `request.env['omniauth.auth']`:
 
 ```ruby
 
-  provider: etsy
-  uid: 12341241
-  info:
-    nickname: nickname
-    email: you@email.com
+provider: etsy
+uid: 12341241
+info:
+  nickname: nickname
+  email: you@email.com
+  user_id: 12341241
+  profile:
+    user_profile_id: 12341241
     user_id: 12341241
-    profile:
-      user_profile_id: 12341241
-      user_id: 12341241
-      login_name: nickname
-      bio: ''
-      gender: private
-      birth_month: '0'
-      birth_day: '0'
-      birth_year: '0'
-      join_tsz: 1337366290
-      materials: ''
-      country_id: ''
-      region: ''
-      city: ''
-      location: ''
-      avatar_id: ''
-      lat: ''
-      lon: ''
-      transaction_buy_count: 0
-      transaction_sold_count: 0
-      is_seller: false
-      image_url_75x75: http://www.etsy.com/images/avatars/default_avatar_75px.png
-      first_name: ''
-      last_name: ''
+    login_name: nickname
+    bio: ''
+    gender: private
+    birth_month: '0'
+    birth_day: '0'
+    birth_year: '0'
+    join_tsz: 1337366290
+    materials: ''
+    country_id: ''
+    region: ''
+    city: ''
+    location: ''
+    avatar_id: ''
+    lat: ''
+    lon: ''
+    transaction_buy_count: 0
+    transaction_sold_count: 0
+    is_seller: false
+    image_url_75x75: http://www.etsy.com/images/avatars/default_avatar_75px.png
+    first_name: ''
+    last_name: ''
+```
 
 ## Installation
 
