@@ -18,6 +18,10 @@ module OmniAuth
           'nickname' => raw_info['login_name'],
           'email' => raw_info['primary_email'],
           'user_id' => raw_info['user_id'],
+          'name' => "#{profile_info['first_name']} #{profile_info['last_name']}",
+          'first_name' => profile_info['first_name'],
+          'last_name' => profile_info['last_name'],
+          'image' => profile_info['image_url_75x75'],
           'profile' => profile_info
         }
       end
