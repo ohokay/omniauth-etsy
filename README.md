@@ -24,7 +24,7 @@ Note: If for some reason you receive a 400 error, it's probably your scopes.
 Add OmniAuth and OmniAuth::Etsy to your application's Gemfile:
 
     gem 'omniauth', '~>1.0'
-    gem 'omniauth-etsy', '0.0.1.alpha'
+    gem 'omniauth-etsy', '0.0.2.alpha'
 
 And then execute:
 
