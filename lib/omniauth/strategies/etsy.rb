@@ -22,7 +22,7 @@ module OmniAuth
 
       def request_phase
         if options.scope
-          options.request_params.merge!(:scope => Rack::Utils.build_query(options.scope))
+          options.request_params.merge!(:scope => Rack::Utils.build_query([options.scope]))
         end
         super
       end
