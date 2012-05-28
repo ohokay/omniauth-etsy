@@ -34,7 +34,8 @@ module OmniAuth
             'first_name' => profile['first_name'],
             'last_name' => profile['last_name'],
             'image' => profile['image_url_75x75'],
-            'full_name' => "#{profile['first_name']} #{profile['last_name']}"
+            'full_name' => "#{profile['first_name']} #{profile['last_name']}",
+            'name' => "#{profile['first_name']} #{profile['last_name']}"
           }
         else
           {}
