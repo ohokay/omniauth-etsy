@@ -5,7 +5,7 @@ module OmniAuth
     class Etsy < OmniAuth::Strategies::OAuth
 
       option :client_options, {
-        :site               => "http://openapi.etsy.com/v2",
+        :site               => "https://openapi.etsy.com/v2",
         :request_token_path => "/oauth/request_token",
         :access_token_path  => "/oauth/access_token",
         :authorize_url      => "https://www.etsy.com/oauth/signin"
