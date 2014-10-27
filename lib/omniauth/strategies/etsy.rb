@@ -30,6 +30,7 @@ module OmniAuth
         if options.scope
           options.request_params.merge!(:scope => options.scope.gsub(',', ' '))
         end
+        options.authorize_params.merge!({oauth_consumer_key: options.consumer_key})
         prep_sandbox
         super
       end
