@@ -14,16 +14,18 @@ module OmniAuth
       uid { user_hash['user_id'] }
 
       info do
-        {
+        info = {
           'nickname' => raw_info['login_name'],
           'email' => raw_info['primary_email'],
           'user_id' => raw_info['user_id'],
-          'name' => "#{profile_info['first_name']} #{profile_info['last_name']}",
-          'first_name' => profile_info['first_name'],
-          'last_name' => profile_info['last_name'],
-          'image' => profile_info['image_url_75x75'],
-          'profile' => profile_info
         }
+        info['profile'] = profile_info if user_hash['Profile']
+
+        info
+      end
+
+      extra do
+        { raw_info: raw_info }
       end
 
       def request_phase
@@ -55,14 +57,17 @@ module OmniAuth
         @data ||= user_hash
       end
 
+      def includes
+        options.includes || "Profile"
+      end
+
       def user_hash
-        @user_hash ||= MultiJson.decode(@access_token.get('/users/__SELF__?includes=Profile').body)['results'][0]
+        @user_hash ||= MultiJson.decode(@access_token.get("/users/__SELF__?includes=#{includes}").body)['results'][0]
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       rescue ::OAuth::Error => e
         raise e.response.inspect
       end
-
     end
   end
 end
